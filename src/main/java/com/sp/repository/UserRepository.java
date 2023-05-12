@@ -1,8 +1,8 @@
 package com.sp.repository;
 import java.util.List;
 import org.springframework.data.repository.CrudRepository;
-import com.sp.model.User;
+import com.sp.model.UserDB;
 
-public interface UserRepository extends CrudRepository<User, Integer>{
-	public User findByUsername(String username);
+public interface UserRepository extends CrudRepository<UserDB, Integer>{
+	public UserDB findByUsername(String username);
 }

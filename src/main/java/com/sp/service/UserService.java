@@ -2,32 +2,34 @@ package com.sp.service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.sp.model.User;
+import com.sp.model.UserDB;
 import com.sp.repository.UserRepository;
 
 @Service
 public class UserService {
 	@Autowired
 	UserRepository uRepository;
+	@Autowired
+	CardService cServ;
 
-
-	public void addUser(User u) {
-		List<Integer> maliste = (List<Integer>) u.getIdList();
-		maliste = CardService.gene5cartes();
-		u.setIdList(maliste);
-		User createdUser=uRepository.save(u);
+	public void addUser(UserDB u) {
+		Set<Integer> maliste = (Set<Integer>) u.getIdList();
+		//maliste = cServ.create5RandCard(u.getId());
+		//u.setIdList(maliste);
+		UserDB createdUser=uRepository.save(u);
 		// Liste de 5 entiers = CardService.gene5cartes()
 		// Set l'attribut idList de User (vide de base)
 		System.out.println(createdUser);
 	}
 
-	public int getUserId(User u) {
+	public int getUserId(UserDB u) {
 		String username = u.getUsername();
-		User myuser = uRepository.findByUsername(username);
+		UserDB myuser = uRepository.findByUsername(username);
 		if (myuser != null) {
 			return myuser.getId();
 		}
@@ -37,8 +39,8 @@ public class UserService {
 	}
 	
 	
-	public User getUser(int id) {
-		Optional<User> cOpt = uRepository.findById(id);
+	public UserDB getUser(int id) {
+		Optional<UserDB> cOpt = uRepository.findById(id);
 		if (cOpt.isPresent()) {
 			return cOpt.get();
 		}
@@ -48,15 +50,15 @@ public class UserService {
 	}
 	
 
-	public int getWallet(User u) {
+	public int getWallet(UserDB u) {
 		String username = u.getUsername();
-		User myuser = uRepository.findByUsername(username);
+		UserDB myuser = uRepository.findByUsername(username);
 		return myuser.getWallet();
 	}
 
-	public void changeWallet(User u, int amount) {
+	public void changeWallet(UserDB u, int amount) {
 		String username = u.getUsername();
-		User myuser = uRepository.findByUsername(username);
+		UserDB myuser = uRepository.findByUsername(username);
 		myuser.setWallet(amount);
 	}
 

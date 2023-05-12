@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Service;
 
-import com.sp.model.User;
+import com.sp.model.UserDB;
 
 import com.sp.service.UserService;
 
@@ -16,9 +16,8 @@ public class AuthentificationService {
 	@Autowired
 	UserService uService;
 	
-	public String login(User user) {
-		uService.getUserId(user);
-		return "bonjour";
+	public int login(UserDB user) {
+		return uService.getUserId(user);
 	}
 
 }

@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.sp.model.Transaction;
-import com.sp.model.User;
+import com.sp.model.UserDB;
 import com.sp.model.Card;
 import com.sp.repository.TransactionRepository;
 
@@ -46,7 +46,7 @@ public class TransactionService {
 	public void demandeAchat(int idCard, int idBuyer) {
 		// On récupère les objets Card et User correspondant aux ID.
 		Card card = cardService.getCard(idCard);
-		User buyer = userService.getUser(idBuyer);
+		UserDB buyer = userService.getUser(idBuyer);
 		
 		// On récupère le montant de la carte.
 		int cardValue = card.getValue();
@@ -55,7 +55,7 @@ public class TransactionService {
 		if (cardValue <= buyer.getWallet()) {
 			// On récupère l'objet User de l'acheteur.
 			int idSeller = card.getOwnerId();
-			User seller = userService.getUser(idSeller);
+			UserDB seller = userService.getUser(idSeller);
 			
 			// Transaction d'argent.
 			buyer.setWallet(buyer.getWallet() - cardValue);

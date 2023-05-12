@@ -9,7 +9,7 @@ import javax.persistence.Id;
 public class Card {
 	@Id
 	@GeneratedValue
-	private int id;
+	private int idCard;
 	private int ownerId;
 	private String name;
 	private String superPowerName;
@@ -26,9 +26,8 @@ public class Card {
 	public Card() {		
 	}
 	
-	public Card(int id, int ownerId, String name, String superPowerName, int superPowerValue, int hp, int atk, int def, int eng,
+	public Card(int ownerId, String name, String superPowerName, int superPowerValue, int hp, int atk, int def, int eng,
 			int val, String description, String imgUrl, boolean sale) {
-		this.id = id;
 		this.ownerId = ownerId;
 		this.name = name;
 		this.superPowerName = superPowerName;
@@ -68,11 +67,11 @@ public class Card {
 	}
 
 	public int getId() {
-		return id;
+		return idCard;
 	}
 
 	public void setId(int id) {
-		this.id = id;
+		this.idCard = id;
 	}
 
 	public int getOwnerId() {

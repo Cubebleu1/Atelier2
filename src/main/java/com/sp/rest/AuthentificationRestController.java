@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.sp.model.User;
+import com.sp.model.UserDB;
 //import com.sp.model.Auth;
 import com.sp.service.AuthentificationService;
 
@@ -18,7 +18,7 @@ public class AuthentificationRestController {
 	AuthentificationService aService;
 	
 	@RequestMapping(method=RequestMethod.POST, value="/login")
-	public String login(@RequestBody User user) {
+	public int login(@RequestBody UserDB user) {
 		return aService.login(user);
 	}
 
